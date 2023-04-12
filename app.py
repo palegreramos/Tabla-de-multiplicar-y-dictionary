@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request
 from datetime import datetime
-from datos import recibedatos,recibemostrardatos
+from datos import Datos
 import sys
 # app = Flask(__name__,template_folder='plantillas',static_folder='otronombre')
 app=Flask(__name__,)
@@ -12,18 +12,19 @@ def hello():
 
 @app.route('/datos')
 def datos():
-    dictionaryToJson=recibedatos()
+    mostrar=Datos()
+    dictionaryToJson=mostrar.recibedatos()
     return dictionaryToJson
 
 
 @app.route('/mostrardatos/<datos>')
 def mostrardatos(datos):
-    
-    return render_template("mostrardatos.html",year=datetime.now().year,message="Opciones",datos=recibemostrardatos(datos))
+    mostrar=Datos()
+    return render_template("mostrardatos.html",year=datetime.now().year,message="Opciones",datos=mostrar.recibemostrardatos(datos))
 
 @app.route('/multiplica',methods=['GET'])
 def formulario():
-  #Comprobamos si viene el parametro por GET
+  #Comprobamos si viene el parámetro por GET
    try:
         numero2 = request.args.get('numero')
  

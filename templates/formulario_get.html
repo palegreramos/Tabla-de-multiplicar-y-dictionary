@@ -1,15 +1,32 @@
-﻿{% extends "layout.html" %}
+﻿{% extends "layout.html" %} {% block content %}
 
-{% block content %}
+<form action="/multiplica" method="get">
+  <div class="row align-items-end">
+    <div class="col-2 text-end">
+    <label for="numero" class="form-label ">Número </label>
+</div>
+<div class="col-6 ">
+    <input
+      type="number"
+      class="form-control"
+      name="numero"
+      id="numero"
+      aria-describedby="helpId"
+      placeholder="Número entero y positivo"
+      required
+    />
+</div>
 
-    
-
-    <form action="/multiplica" method="get" class="form-inline">
-        <label class="sr-only" for="numero">Número</label>
-        <input type="number" id="numero" name="numero" class="form-control mb-2 mr-sm-2 mb-sm-0">
-        <input type="submit" value="Enviar"  class="btn btn-primary"/>
-    </form>
-    {% endblock %}
-    {% block scripts %}
-    <script src="{{url_for('static',filename='desactivar.js')}}" type="module"></script>
-    {% endblock %}
+    <input
+      type="submit"
+      value="Multiplica"
+      class="btn btn-success col-md-4"
+    />
+ </div>
+</form>
+{% endblock %} {% block scripts %}
+<script
+  src="{{url_for('static',filename='desactivar.js')}}"
+  type="module"
+></script>
+{% endblock %}
